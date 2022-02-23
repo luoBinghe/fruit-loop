@@ -1,0 +1,33 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 90px;
+
+  background-color: rgb(95, 52, 115);
+  
+  color: #FFF;
+
+  section{
+    margin: 1rem;
+    font-weight: bold;
+    
+    h2 {
+      span {
+        color: #F1D00A;
+      }
+    }
+  }
+
+  a {
+    text-align: center;
+    margin-left: 1rem;
+
+    &:hover{
+      color: #F1D00A;
+      cursor: pointer;
+    }
+  }
+}

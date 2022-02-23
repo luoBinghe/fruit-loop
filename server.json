@@ -1,0 +1,39 @@
+{
+  "fruits": [
+    {
+      "id": "1",
+      "name": "banana",
+      "quantity": "10",
+      "price": "1.00",
+      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+    },
+    {
+      "id": "2",
+      "name": "maca",
+      "quantity": "8",
+      "price": "1.00",
+      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+    },
+    {
+      "id": "3",
+      "name": "pera",
+      "quantity": "15",
+      "price": "1.00",
+      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+    },
+    {
+      "id": "4",
+      "name": "acabaxi",
+      "quantity": "3",
+      "price": "1.00",
+      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+    },
+    {
+      "id": "5",
+      "name": "manga",
+      "quantity": "5",
+      "price": "1.00",
+      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+    }
+  ]
+}
