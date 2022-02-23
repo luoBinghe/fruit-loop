@@ -8,7 +8,8 @@ export default function Dashboard(){
   const { fruits, isError, isLoading } = useService()
   const [add, setAdd] = useState(0)
 
-  const handleAddQuantity = () => {
+  const handleAddQuantity = (quantity) => {
+    if(add >= quantity) return
     setAdd(old => old + 1)
   }
 
@@ -20,18 +21,15 @@ export default function Dashboard(){
   return(
     <section className="grid">
       {fruits && 
-        fruits.map(fr => (
+        fruits.map((fr, index) => (
           <Grid 
-            key={fr.id}
+            key={index}
             name={fr.name} 
             id={fr.id}
             quantity={fr.quantity} 
             price={fr.price}
             img={fr.img}
-            onHandleAdd={handleAddQuantity}
-            onHandleSub={handleSubQuantity}
-            total={add}
-            disabled={add === 0}
+            disabled={fr.quantity === 0}
           />
         ))
       }
