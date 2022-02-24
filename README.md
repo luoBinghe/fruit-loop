@@ -26,11 +26,11 @@ As seguintes tecnologias foram usadas para a montagem:
 # react-toastify
   - Para exibição de mensagens rapidas
 
-## Possiveis problemas
+# Possiveis problemas
 
- # A listagem de frutas não aparece!
+ ## A listagem de frutas não aparece!
   - para a aplicação funcionar, é preciso que o server e a aplicação estejam rodando, certifique se de rodar os comandos listados acima.
 
-  # Consigo logar com qualquer email e senha!
+  ## Consigo logar com qualquer email e senha!
   - o logon estatico, não há necessidade de cadastro. Porém, para realização de 'compras' o login deve ser feito.
 
