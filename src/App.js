@@ -1,5 +1,5 @@
 import './App.scss';
-import Dashboard from './components/Dashboard';
+import Routes from './Routes';
 import Header from './components/Header';
 import { GlobalProvider } from './hooks/useGlobalContext'
 
@@ -7,8 +7,7 @@ function App() {
   return (
     <div className="App">
       <GlobalProvider>
-        <Header />
-        <Dashboard />
+        <Routes />
       </GlobalProvider>
     </div>
   );

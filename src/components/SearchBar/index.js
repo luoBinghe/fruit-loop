@@ -5,9 +5,11 @@ import './style.scss'
 import searchIcon from '../../utils/images/search.png'
 
 import { useGlobalContext } from '../../hooks/useGlobalContext'
+import { useService } from '../../hooks/useService'
 
 export default function SearchBar(){
-  const { searchText, setSearchText, handleSeachFruit } = useGlobalContext()
+  const { handleSeachFruit } = useService()
+  const { searchText, setSearchText } = useGlobalContext()
 
   return(
     <div className='input-style'>

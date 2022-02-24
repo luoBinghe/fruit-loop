@@ -1,12 +1,19 @@
 import { useState, useCallback, useEffect } from 'react'
 
 import { api } from '../services/api'
+import { useGlobalContext } from './useGlobalContext'
+import { useLocation } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 export function useService(){
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [fruits, setFruits] = useState([])
-  console.log('isabela', fruits)
+  
+  const { searchText, fruits, setFruits, setSearchText  } = useGlobalContext()
+
   const getFruits = useCallback(async () => {
     setIsLoading(true)
     try{
@@ -18,7 +25,24 @@ export function useService(){
       setIsLoading(false)
       setIsError(true)
     }
-  }, [])
+  }, [setFruits])
+
+  const handleSeachFruit = async () => {
+    try{
+      const response = await api.get(`fruits?q=${searchText}`)
+      setFruits(response.data)
+    }catch(error){
+      console.error(error)
+      setIsLoading(false)
+      setIsError(true)
+    }finally{
+      setSearchText('')
+    }
+
+    if(location.pathname !== '/'){
+      navigate('/')
+    }
+  }
 
   useEffect(() => {
     if(fruits.length === 0){
@@ -26,5 +50,7 @@ export function useService(){
     }
   }, [fruits, getFruits])
 
-  return { fruits, isError, isLoading, setFruits }
+  console.log(fruits)
+
+  return { isError, isLoading, handleSeachFruit }
 }

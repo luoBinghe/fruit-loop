@@ -5,35 +5,35 @@
       "name": "banana",
       "quantity": "10",
       "price": "1.00",
-      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+      "img": "https://pngimg.com/uploads/banana/banana_PNG825.png"
     },
     {
       "id": "2",
-      "name": "maca",
+      "name": "maçã",
       "quantity": "8",
       "price": "1.00",
-      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+      "img": "https://pngimg.com/uploads/apple/apple_PNG12490.png"
     },
     {
       "id": "3",
       "name": "pera",
       "quantity": "15",
       "price": "1.00",
-      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+      "img": "https://pngimg.com/uploads/pear/pear_PNG3428.png"
     },
     {
       "id": "4",
       "name": "acabaxi",
       "quantity": "3",
       "price": "1.00",
-      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+      "img": "https://pngimg.com/uploads/pineapple/pineapple_PNG95135.png"
     },
     {
       "id": "5",
       "name": "manga",
       "quantity": "5",
       "price": "1.00",
-      "img": "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?s=612x612"
+      "img": "https://pngimg.com/uploads/mango/mango_PNG9165.png"
     }
   ]
 }

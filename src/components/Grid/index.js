@@ -1,10 +1,14 @@
 import React from 'react'
 import './style.scss'
 
+import AddOnCard from '../AddOnCard'
+
 export default function Grid({name, quantity, price, img, id, disabled}){
   return(
     <div key={id} className='container'>
-      <img src={img} />
+      <div className='img-style'>
+        <img src={img} />
+      </div>
       <section className='title'>
         <p>{name}</p>
       </section>
@@ -12,11 +16,7 @@ export default function Grid({name, quantity, price, img, id, disabled}){
           <p>Estoque: {quantity}</p>
           <p>Preço: R${price}</p>
       </section>
-      <div className='card'>
-        <button disabled={disabled}>
-          adicionar ao carrinho
-        </button>
-      </div>
+      <AddOnCard name={name} quantity={quantity} price={price} img={img} id={id} disabled={disabled} />
     </div>
   )
 }

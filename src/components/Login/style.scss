@@ -1,0 +1,57 @@
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 8rem;
+
+  height: 20rem;
+  border-radius: 20px;
+
+  font-weight: bold;
+
+  color: white;
+  
+
+  background-color: #F1D00A;
+
+  section{
+    h1{
+      color: rgb(95, 52, 115);
+    }
+
+    span {
+      color: red
+    }
+  }
+
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+      border: none;
+      width: 15rem;
+      border-radius: 2px;
+    }
+
+    button{
+      width: 15rem;
+      margin: 1rem;
+      border: none;
+      border-radius: 2px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 0.5rem;
+      background-color: rgb(95, 52, 115);
+
+      &:hover {
+        cursor: pointer;
+        filter: brightness(0.9);
+      }
+    }
+  }
+}
