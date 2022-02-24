@@ -44,9 +44,9 @@ export function GlobalProvider({ children }){
         setCart(updateCart)
         localStorage.setItem('@Varejao:cart', JSON.stringify(updateCart))
       } catch(e) {
-        console.error('Erro na adição do produto');
+        console.error('Erro na adição do produto')
       }
-    };
+    }
   
     const removeProduct = (productId) => {
       try {
@@ -63,39 +63,45 @@ export function GlobalProvider({ children }){
       } catch(e) {
         console.error('Erro na remoção do produto');
       }
-    };
+    }
   
     const updateProductAmount = async ({
       productId,
       amount,
     }) => {
-      try {
-        if(amount <= 0){
-          return 0
-        }
-  
-        const updatedCart = [...cart]
-        const productExists = updatedCart.find(product => product.id === productId)
-  
-        if(productExists){
-          productExists.amount = amount
-          setCart(updatedCart)
-          localStorage.setItem('@Varejao:cart', JSON.stringify(updatedCart))
-        } else {
-          throw Error()
-        }
-  
-      } catch(e) {
-        console.error(e)
+    try {
+      if(amount <= 0){
+        return 0
       }
-    };
+
+      const updatedCart = [...cart]
+      const productExists = updatedCart.find(product => product.id === productId)
+
+      if(productExists){
+        productExists.amount = amount
+        setCart(updatedCart)
+        localStorage.setItem('@Varejao:cart', JSON.stringify(updatedCart))
+      } else {
+        throw Error()
+      }
+
+    } catch(e) {
+      console.error(e)
+    }
+  }
+
+  const clearCard = () => {
+    const updatedCart = []
+    setCart(updatedCart)
+      localStorage.setItem('@Varejao:cart', JSON.stringify(updatedCart))
+  }
 
   const handleLoggeUser = () => {
     setIsLogged(true)
   }
 
   return(
-    <GlobalContext.Provider value={{searchText, setSearchText, fruits, setFruits, isLogged, setIsLogged, handleLoggeUser, cart, addProduct, removeProduct, updateProductAmount }}>
+    <GlobalContext.Provider value={{searchText, setSearchText, fruits, setFruits, isLogged, setIsLogged, handleLoggeUser, cart, addProduct, removeProduct, updateProductAmount, clearCard }}>
       {children}
     </GlobalContext.Provider>
   )

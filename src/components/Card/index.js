@@ -1,19 +1,29 @@
 import { useGlobalContext,  } from '../../hooks/useGlobalContext'
 import { useNavigate } from 'react-router'
-
+import jsPDF from "jspdf";
 
 import './style.scss'
 import { parseDouble } from '../../utils/formmaters'
 
 export default function Card(){
-  const { isLogged, cart, removeProduct, updateProductAmount } = useGlobalContext()
-  // const [totalPrice, setPrice] = useState()
+  const { isLogged, cart, removeProduct, updateProductAmount, clearCard } = useGlobalContext()
+  const doc = new jsPDF()
   const navigate = useNavigate()
 
   const handleGeneratePdf = () => {
     if(!isLogged) navigate('/login')
 
-    console.log('aaaa')
+    cart.forEach(v => {
+      doc.text(10, 20, `produto ${v.name}`)
+      doc.text(`quantidade ${v.amount}`, 10, 30)
+      doc.text(`preço ${v.price}`, 10, 40)
+    })
+    doc.text(`Valor total: ${total}`, 10, 10)
+
+    
+    doc.save('comprovante.pdf')
+    navigate('/')
+    return clearCard()
   }
 
   const total = parseDouble(cart.reduce((sumTotal, product) => {
