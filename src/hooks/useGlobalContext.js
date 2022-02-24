@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react"
+import { api } from "../services/api";
 
 const GlobalContext = createContext();
 
@@ -8,18 +9,93 @@ export function GlobalProvider({ children }){
 
   const [isLogged, setIsLogged] = useState(false)
 
-  const [cardItem, setItemInCard] = useState()
+  const [cart, setCart] = useState(() => {
+    const storagedCart = localStorage.getItem('@Varejao:cart:cart');
+  
+      if (storagedCart) {
+        return JSON.parse(storagedCart);
+      }
+  
+      return [];
+    });
+  
+    const addProduct = async (productId) => {
+      try {
+        const updateCart = [...cart]
+        const productExists = updateCart.find(product => product.id === productId)
+  
+        const currentAmount = productExists ? productExists.amount : 0
+        const amount = currentAmount + 1
 
-  const handleAddItem = (item) => {
-    setItemInCard(item)
-  }
+  
+        if(productExists){
+          productExists.amount = amount
+        } else {
+          const product = await api.get(`/fruits/${productId}`)
+  
+          const newProduct = {
+            ...product.data,
+            amount: 1
+          }
+  
+          updateCart.push(newProduct)
+        }
+  
+        setCart(updateCart)
+        localStorage.setItem('@Varejao:cart', JSON.stringify(updateCart))
+      } catch(e) {
+        console.error('Erro na adição do produto');
+      }
+    };
+  
+    const removeProduct = (productId) => {
+      try {
+        const updatedCart = [...cart]
+        const productIndex = updatedCart.findIndex(product => product.id === productId)
+  
+        if(productIndex >= 0){
+          updatedCart.splice(productIndex, 1)
+          setCart(updatedCart)
+          localStorage.setItem('@Varejao:cart', JSON.stringify(updatedCart))
+        } else {
+          throw Error()
+        }
+      } catch(e) {
+        console.error('Erro na remoção do produto');
+      }
+    };
+  
+    const updateProductAmount = async ({
+      productId,
+      amount,
+    }) => {
+      try {
+        if(amount <= 0){
+          return 0
+        }
+  
+        const updatedCart = [...cart]
+        const productExists = updatedCart.find(product => product.id === productId)
+  
+        if(productExists){
+          productExists.amount = amount
+          setCart(updatedCart)
+          localStorage.setItem('@Varejao:cart', JSON.stringify(updatedCart))
+        } else {
+          throw Error()
+        }
+  
+      } catch(e) {
+        console.error(e)
+      }
+    };
 
   const handleLoggeUser = () => {
     setIsLogged(true)
   }
 
   return(
-    <GlobalContext.Provider value={{searchText, setSearchText, fruits, setFruits, isLogged, setIsLogged, handleLoggeUser, cardItem, handleAddItem }}>
+    <GlobalContext.Provider value={{searchText, setSearchText, fruits, setFruits, isLogged, setIsLogged, handleLoggeUser, cart, addProduct, removeProduct, updateProductAmount }}>
       {children}
     </GlobalContext.Provider>
   )

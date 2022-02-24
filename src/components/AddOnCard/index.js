@@ -3,7 +3,7 @@ import { useGlobalContext } from '../../hooks/useGlobalContext'
 import './style.scss'
 
 export default function AddOnCard({ name, quantity, price, img, id ,disabled }){
-  const { handleAddItem } = useGlobalContext()
+  const { addProduct } = useGlobalContext()
 
   const item = {
     price: price,
@@ -14,7 +14,7 @@ export default function AddOnCard({ name, quantity, price, img, id ,disabled }){
 
   return(
     <div className='card-button'>
-      <button disabled={disabled} onClick={() => handleAddItem(item)}>
+      <button disabled={disabled} onClick={() => addProduct(item.id)}>
         adicionar ao carrinho
       </button>
     </div>
