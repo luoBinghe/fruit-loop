@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react"
+import { toast } from "react-toastify";
 import { api } from "../services/api";
 
 const GlobalContext = createContext();
@@ -76,6 +77,10 @@ export function GlobalProvider({ children }){
 
       const updatedCart = [...cart]
       const productExists = updatedCart.find(product => product.id === productId)
+
+      if(amount > productExists.quantity){
+        return
+      }
 
       if(productExists){
         productExists.amount = amount

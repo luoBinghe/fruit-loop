@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { api } from '../services/api'
 import { useGlobalContext } from './useGlobalContext'
 import { useLocation } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 
 export function useService(){
@@ -28,8 +29,11 @@ export function useService(){
   }, [setFruits])
 
   const handleSeachFruit = async () => {
+    const newText = searchText.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     try{
-      const response = await api.get(`fruits?q=${searchText}`)
+      const response = await api.get(`fruits?q=${newText}`)
+      if(response.data.length === 0) return toast.error('Desculpe, produto não existe!')
+
       setFruits(response.data)
     }catch(error){
       console.error(error)

@@ -1,6 +1,8 @@
 import React from 'react'
 import './style.scss'
 
+import { correctName } from '../../utils/formmaters'
+
 import AddOnCard from '../AddOnCard'
 
 export default function Grid({name, quantity, price, img, id, disabled}){
@@ -10,7 +12,7 @@ export default function Grid({name, quantity, price, img, id, disabled}){
         <img src={img} />
       </div>
       <section className='title'>
-        <p>{name}</p>
+        <p>{correctName(name)}</p>
       </section>
       <section className='info-data'>
           <p>Estoque: {quantity}</p>

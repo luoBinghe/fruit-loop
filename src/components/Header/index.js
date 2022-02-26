@@ -6,9 +6,16 @@ import { Link } from 'react-router-dom';
 
 import './style.scss'
 import { useGlobalContext } from '../../hooks/useGlobalContext';
+import { useNavigate } from 'react-router';
 
 export default function Header(){
-  const { isLogged, setLoggedIn } = useGlobalContext()
+  const { isLogged, setLoggedIn, setFruits } = useGlobalContext()
+  const navigate = useNavigate()
+
+  const handleClearSearch = () => {
+    setFruits([])
+    return navigate.push('/')
+  }
 
   return(
     <header>
@@ -17,9 +24,9 @@ export default function Header(){
       </section>
 
       <section>
-          <Link to="/">
+          <button onClick={() => handleClearSearch()}>
             Varejo
-          </Link>
+          </button>
           <Link to="/card">
             Carrinho
           </Link>

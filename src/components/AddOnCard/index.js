@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import './style.scss'
 
 export default function AddOnCard({ name, quantity, price, img, id ,disabled }){
-  const { addProduct } = useGlobalContext()
+  const { cart, addProduct } = useGlobalContext()
 
   const item = {
     price: price,
@@ -12,10 +12,25 @@ export default function AddOnCard({ name, quantity, price, img, id ,disabled }){
     name: name,
     img: img,
   }
-
+  console.log(cart)
   const handleAddProduct = (id) => {
-    addProduct(id)
-    return toast.success('Produto adicionado ao carrinho',  { 
+    const findProduct = cart.find(prd => prd.id === id)
+
+    if(!findProduct){
+      addProduct(id)
+      return toast.success('Produto adicionado ao carrinho',  { 
+        autoClose: 2000,
+        position: toast.POSITION.BOTTOM_CENTER
+      })
+    }else if(findProduct.quantity > findProduct?.amount) {
+      addProduct(id)
+      return toast.success('Produto adicionado ao carrinho',  { 
+        autoClose: 2000,
+        position: toast.POSITION.BOTTOM_CENTER
+      })
+    }
+
+    return toast.warning('Fora de estoque',  { 
       autoClose: 2000,
       position: toast.POSITION.BOTTOM_CENTER
     })

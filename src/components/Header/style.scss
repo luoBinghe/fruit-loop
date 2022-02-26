@@ -32,4 +32,21 @@ header {
       cursor: pointer;
     }
   }
+
+  button {
+    border: none;
+    background: transparent;
+
+    text-align: center;
+    margin-left: 1rem;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    width: 3.5rem;
+
+    &:hover{
+      color: rgb(95, 52, 115);
+      cursor: pointer;
+    }
+  }
 }

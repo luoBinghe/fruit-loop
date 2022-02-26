@@ -11,8 +11,8 @@ export default function Card(){
   const navigate = useNavigate()
 
   const handleGeneratePdf = () => {
-    if(!isLogged) navigate('/login')
-
+    if(!isLogged) return navigate('/login')
+    
     cart.forEach(v => {
       doc.text(10, 20, `produto ${v.name}`)
       doc.text(`quantidade ${v.amount}`, 10, 30)
